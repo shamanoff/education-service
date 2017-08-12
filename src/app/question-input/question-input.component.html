@@ -1,0 +1,39 @@
+<div class="row align-center container">
+  <div class="small-12 medium-6 columns">
+    <div class="card">
+      <h2>Вход</h2>
+
+      <!--form-->
+      <form #formData='ngForm' novalidate
+            (ngSubmit)="onSubmit(formData)"
+            [formGroup]="questionInputForm">
+        <!--question input-->
+        <div class="fields">
+          <input [ngClass]="{'has-error': questionInput}" class="form-control"
+                 id="questionInput"
+                 type="text"
+                 placeholder="Question"
+                 formControlName="questionInput">
+
+        </div>
+
+        <!--answer-->
+        <div class="fields">
+          <input [ngClass]="{'has-error': answerOne" class="form-control"
+                 id="answerOne"
+                 type="text"
+                 placeholder="Answer"
+                 formControlName="answerOne">
+
+        </div>
+
+        <!--button-->
+        <div class="fields">
+          <button type="submit" class="button expanded" [disabled]="!loginForm.valid && loginForm.touched">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
