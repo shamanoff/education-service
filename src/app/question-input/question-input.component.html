@@ -7,6 +7,7 @@
       <form #formData='ngForm' novalidate
             (ngSubmit)="onSubmit(formData)"
             [formGroup]="questionInputForm">
+            <!--[formGroup]="questionInputForm">-->
 
         <!--question input-->
         <div class="fields">
@@ -17,7 +18,7 @@
                     type="text"
                     placeholder="Choose Category"
                     formControlName="tag">
-            <option *ngFor="let tag of tags" >{{tag.name}}</option>
+            <option *ngFor="let tag of tag$" >{{tag.name}}</option>
 
             </select >
         </div>

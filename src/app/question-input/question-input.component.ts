@@ -17,6 +17,8 @@ export class QuestionInputComponent implements OnInit {
   constructor(public router: Router, private _db: AngularFireDatabase) { }
 
   ngOnInit() {
+    this.tag$ = this._db.list('/tags');
+    console.log(this.tag$);
   }
   onSubmit(formData){
   }
