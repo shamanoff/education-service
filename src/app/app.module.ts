@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import { TagsComponent } from './tags/tags.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDN4lCRC7LfoRBHMowfX1eCGZFfl9HVR9U',
@@ -27,7 +28,8 @@ export const firebaseConfig = {
     QuestionInputComponent,
     ExzamChooserComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    TagsComponent
   ],
   imports: [
     FormsModule,
