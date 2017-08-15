@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {Tag} from './Tag';
 
 @Component({
   selector: 'app-question-input',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionInputComponent implements OnInit {
 
-  constructor() { }
+  questionInputForm: FormGroup;
+  selectedTag: String;
+  tag$: FirebaseListObservable<Tag[]>;
+  constructor(public router: Router, private _db: AngularFireDatabase) { }
 
   ngOnInit() {
+  }
+  onSubmit(formData){
   }
 
 }

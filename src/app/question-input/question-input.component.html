@@ -1,36 +1,49 @@
 <div class="row align-center container">
   <div class="small-12 medium-6 columns">
     <div class="card">
-      <h2>Вход</h2>
+      <h2>New Question</h2>
 
       <!--form-->
       <form #formData='ngForm' novalidate
             (ngSubmit)="onSubmit(formData)"
             [formGroup]="questionInputForm">
+
         <!--question input-->
         <div class="fields">
-          <input [ngClass]="{'has-error': questionInput}" class="form-control"
+          <select  [ngClass]="{'has-error': questionInput}"
+                   [(ngModel)]="selectedTag"
+                   class="form-control"
+                    id="tag"
+                    type="text"
+                    placeholder="Choose Category"
+                    formControlName="tag">
+            <option *ngFor="let tag of tags" >{{tag.name}}</option>
+
+            </select >
+        </div>
+        <!--question input-->
+        <div class="fields">
+          <textarea [ngClass]="{'has-error': questionInput}" class="form-control"
                  id="questionInput"
                  type="text"
                  placeholder="Question"
-                 formControlName="questionInput">
-
+                    formControlName="questionInput"></textarea>
         </div>
 
         <!--answer-->
         <div class="fields">
-          <input [ngClass]="{'has-error': answerOne" class="form-control"
+          <textarea [ngClass]="{'has-error': answerOne}" class="form-control"
                  id="answerOne"
                  type="text"
                  placeholder="Answer"
-                 formControlName="answerOne">
+                    formControlName="answerOne"></textarea>
 
         </div>
 
         <!--button-->
         <div class="fields">
-          <button type="submit" class="button expanded" [disabled]="!loginForm.valid && loginForm.touched">
-            Submit
+          <button type="submit" class="button expanded" [disabled]="!questionInputForm.valid && questionInputForm.touched">
+            Add question
           </button>
         </div>
       </form>

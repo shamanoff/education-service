@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+$primary-color: #3568cc;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+$roboto: 'Roboto Condensed', sans-serif;
+
+$global-flexbox: true;
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $roboto;
+  font-weight: bold;
+  line-height: 1.9rem;
+}
+p, span, a, button{
+  font-family: $roboto;
+  font-weight: normal;
+}
+body{
+  background-color: ghostwhite;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.has-error{
+  border: 1px solid tomato;
+  color: tomato;
+
+}
+.error{
+  color: tomato;
+  position: absolute;
+  margin-top:5px;
+}
+.fields{
+  //min-height:70px;
+  //border: 1px solid gainsboro;
+  padding-bottom:1rem;
+}
+.fields input{
+  margin:0;
+
+}
+.card{
+  margin-top:2rem;
+  padding:2rem;
+  -webkit-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.58);
+  -moz-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.58);
+  box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.58);
+
+}
+.container{
+  min-height: 47.6rem;
+}
