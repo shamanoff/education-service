@@ -11,43 +11,83 @@
 
         <!--question input-->
         <div class="fields">
-          <select  [ngClass]="{'has-error': questionInput}"
-                   [(ngModel)]="selectedTag"
+          <h5>Discipline</h5>
+          <select  [(ngModel)]="selectedTag"
                    class="form-control"
                     id="tag"
                     type="text"
                     placeholder="Choose Category"
                     formControlName="tag">
-            <option *ngFor="let tag of tag$" >{{tag.name}}</option>
+            <option *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
 
             </select >
         </div>
         <!--question input-->
         <div class="fields">
+          <h5>Question</h5>
           <textarea [ngClass]="{'has-error': questionInput}" class="form-control"
                  id="questionInput"
                  type="text"
                  placeholder="Question"
-                    formControlName="questionInput"></textarea>
+                 formControlName="questionInput"></textarea>
         </div>
-
         <!--answer-->
+        <h5>Answers</h5>
+
         <div class="fields">
           <textarea [ngClass]="{'has-error': answerOne}" class="form-control"
                  id="answerOne"
                  type="text"
-                 placeholder="Answer"
-                    formControlName="answerOne"></textarea>
+                 placeholder="Answer One"
+                 formControlName="answerOne"></textarea>
 
         </div>
 
+        <div class="fields">
+          <textarea [ngClass]="{'has-error': answerTwo}" class="form-control"
+                    id="answerTwo"
+                    type="text"
+                    placeholder="Answer Two"
+                    formControlName="answerTwo"></textarea>
+
+        </div>
+
+        <div class="fields">
+          <textarea [ngClass]="{'has-error': answerThree}" class="form-control"
+                    id="answerThree"
+                    type="text"
+                    placeholder="Answer Three"
+                    formControlName="answerThree"></textarea>
+
+        </div>
+
+        <div class="fields">
+          <textarea [ngClass]="{'has-error': answerFour}" class="form-control"
+                    id="answerFour"
+                    type="text"
+                    placeholder="Answer Four"
+                    formControlName="answerFour"></textarea>
+
+        </div>
+
+        <div class="fields">
+        <fieldset class="large-6 columns">
+          <h5>Correct Answer</h5>
+          <input type="radio" name="one" value="0" id="one" required><label for="one">Answer One</label>
+          <input type="radio" name="two" value="1" id="two"><label for="two">Answer Two</label>
+          <input type="radio" name="three" value="2" id="three"><label for="three">Answer Three</label>
+          <input type="radio" name="four" value="3" id="four"><label for="four">Answer Four</label>
+        </fieldset>
+        </div>
         <!--button-->
         <div class="fields">
-          <button type="submit" class="button expanded" [disabled]="!questionInputForm.valid && questionInputForm.touched">
+          <button type="button" class="button expanded" [disabled]="!questionInputForm.valid && questionInputForm.touched">
             Add question
           </button>
         </div>
       </form>
+
+
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {Tag} from '../tags/Tag';
+import {Tag} from '../tags/tag';
 
 @Component({
   selector: 'app-question-input',
@@ -14,11 +14,19 @@ export class QuestionInputComponent implements OnInit {
   questionInputForm: FormGroup;
   selectedTag: String;
   tag$: FirebaseListObservable<Tag[]>;
-  constructor(public router: Router, private _db: AngularFireDatabase) { }
+  constructor(public router: Router, private _db: AngularFireDatabase) {
+    this.tag$ = this._db.list('/tags');
+  }
 
   ngOnInit() {
-    this.tag$ = this._db.list('/tags');
-    console.log(this.tag$);
+    this.questionInputForm = new FormGroup({
+      tag: new FormControl(),
+      questionInput: new FormControl(),
+      answerOne: new FormControl(),
+      answerTwo: new FormControl(),
+      answerThree: new FormControl(),
+      answerFour: new FormControl(),
+      })
   }
   onSubmit(formData){
   }
