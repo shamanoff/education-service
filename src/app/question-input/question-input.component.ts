@@ -26,6 +26,10 @@ export class QuestionInputComponent implements OnInit {
       answerTwo: new FormControl(),
       answerThree: new FormControl(),
       answerFour: new FormControl(),
+      one: new FormControl(false),
+      two: new FormControl(true),
+      three: new FormControl(false),
+      four: new FormControl(false),
       })
   }
   onSubmit(formData){
