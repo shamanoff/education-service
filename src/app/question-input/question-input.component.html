@@ -4,7 +4,7 @@
       <h2>New Question</h2>
 
       <!--form-->
-      <form #formData='ngForm' novalidate
+      <form #formData="ngForm" novalidate
             (ngSubmit)="onSubmit(formData)"
             [formGroup]="questionInputForm">
             <!--[formGroup]="questionInputForm">-->
@@ -12,8 +12,12 @@
         <!--question input-->
         <div class="fields">
           <h5>Discipline</h5>
+          <span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>
+
           <select  [(ngModel)]="selectedTag"
-                    formControlName="tag"
+                   formControlName="tag"
+                   [ngClass]="{'has-error': reqErrMsg}"
+
           >
             <option *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
             </select >
@@ -21,7 +25,8 @@
         <!--question input-->
         <div class="fields">
           <h5>Question</h5>
-          <textarea [ngClass]="{'has-error': question}" class="form-control"
+          <span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>
+          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                  id="question"
                  type="text"
                  placeholder="Question"
@@ -31,7 +36,7 @@
         <h5>Answers</h5>
 
         <div class="fields">
-          <textarea [ngClass]="{'has-error': answerOne}" class="form-control"
+          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                  id="answerOne"
                  type="text"
                  placeholder="Answer One"
@@ -40,7 +45,7 @@
         </div>
 
         <div class="fields">
-          <textarea [ngClass]="{'has-error': answerTwo}" class="form-control"
+          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                     id="answerTwo"
                     type="text"
                     placeholder="Answer Two"
@@ -49,7 +54,7 @@
         </div>
 
         <div class="fields">
-          <textarea [ngClass]="{'has-error': answerThree}" class="form-control"
+          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                     id="answerThree"
                     type="text"
                     placeholder="Answer Three"
@@ -58,7 +63,7 @@
         </div>
 
         <div class="fields">
-          <textarea [ngClass]="{'has-error': answerFour}" class="form-control"
+          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                     id="answerFour"
                     type="text"
                     placeholder="Answer Four"
@@ -77,9 +82,7 @@
         </div>
         <!--button-->
         <div class="fields">
-          <button type="button" class="button expanded" >
-            Add Question
-          </button>
+          <input type="submit" class="button expanded" value="Add Question" [disabled]="!questionInputForm.valid && questionInputForm.touched">
         </div>
       </form>
     </div>
