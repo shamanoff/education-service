@@ -1,8 +1,12 @@
 export class Question{
   constructor(
-    answer: number,
-    options: string[],
-    queston: string
+    tag: string,
+    question: string,
+    answerOne: string,
+    answerTwo: string,
+    answerThree: string,
+    answerFour: string,
+    correctAnswer: string
 
   ){}
 }

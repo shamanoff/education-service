@@ -74,11 +74,11 @@ export class QuestionInputComponent implements OnInit {
       correctAnswer: formData.value.correctAnswer
     };
     // console.log(data);
-    if (formData.valid) {
+/*    if (formData.valid) {
       this._questServ.addQuestion(data)
         .catch(error => console.log(error));
-    } else console.log('not valid' + formData.valid);
-    // this._questServ.addQuestion(data);
+    } else console.log('not valid' + formData.valid);*/
+    this._questServ.addQuestion(data);
 
     formData.reset();
   }

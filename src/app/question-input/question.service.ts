@@ -1,30 +1,29 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Question} from './question';
-import {Http} from '@angular/http';
 
 @Injectable()
 export class QuestionService {
-  public questions: FirebaseListObservable<Question[]>;
+  public question$: FirebaseListObservable<Question[]>;
 
-
-  constructor(private _http: Http, private _db: AngularFireDatabase) {
+  constructor( private _db: AngularFireDatabase) {
   }
 
   getQuestions() {
-    this.questions = this._db.list('/questions');
-    return this.questions;
+    this.question$ = this._db.list('/questions');
+    return this.question$;
   }
 
   addQuestion(data) {
-    return this.questions.push(data);
+    return this.question$.push(data);
+    // console.log('ADD ' + JSON.stringify(data));
   }
 
   updateQuestion(key, updQuest) {
-    return this.questions.update(key, updQuest);
+    return this.question$.update(key, updQuest);
   }
 
   deleteQuestion(key) {
-    return this.questions.remove(key);
+    return this.question$.remove(key);
   }
 }
