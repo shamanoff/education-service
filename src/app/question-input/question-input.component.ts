@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Tag} from '../tags/tag';
 import {QuestionService} from "./question.service";
-import {error} from "util";
 
 @Component({
   selector: 'app-question-input',
@@ -43,10 +42,12 @@ export class QuestionInputComponent implements OnInit {
       answerFour: formData.value.answerFour,
       correctAnswer: formData.value.correctAnswer
     };
-    if(formData.valid){
+/*    if(formData.valid){
       this._questServ.addQuestion(data)
         .catch(error => console.log(error));
-    }else console.log('not valid' + formData.valid);
+    }else console.log('not valid' + formData.valid);*/
+    this._questServ.addQuestion(data);
+
     formData.reset();
   }
 
