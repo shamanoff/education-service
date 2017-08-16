@@ -15,21 +15,18 @@
           <select  [(ngModel)]="selectedTag"
                    class="form-control"
                     id="tag"
-                    type="text"
-                    placeholder="Choose Category"
                     formControlName="tag">
             <option *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
-
             </select >
         </div>
         <!--question input-->
         <div class="fields">
           <h5>Question</h5>
-          <textarea [ngClass]="{'has-error': questionInput}" class="form-control"
-                 id="questionInput"
+          <textarea [ngClass]="{'has-error': question}" class="form-control"
+                 id="question"
                  type="text"
                  placeholder="Question"
-                 formControlName="questionInput"></textarea>
+                 formControlName="question"></textarea>
         </div>
         <!--answer-->
         <h5>Answers</h5>
@@ -73,21 +70,19 @@
         <div class="fields">
         <fieldset class="large-6 columns">
           <h5>Correct Answer</h5>
-          <input type="radio" name="one" value="0" id="one" formControlName="one"><label for="one">Answer One</label>
-          <input type="radio" name="two" value="1" id="two" formControlName="two"><label for="two">Answer Two</label>
-          <input type="radio" name="three" value="2" id="three" formControlName="three"><label for="three">Answer Three</label>
-          <input type="radio" name="four" value="3" id="four" formControlName="four"><label for="four">Answer Four</label>
+          <input type="radio" name="correctAnswer" value="0" id="one" formControlName="correctAnswer"><label for="one">Answer One</label>
+          <input type="radio" name="correctAnswer" value="1" id="two" formControlName="correctAnswer"><label for="two">Answer Two</label>
+          <input type="radio" name="correctAnswer" value="2" id="three" formControlName="correctAnswer"><label for="three">Answer Three</label>
+          <input type="radio" name="correctAnswer" value="3" id="four" formControlName="correctAnswer"><label for="four">Answer Four</label>
         </fieldset>
         </div>
         <!--button-->
         <div class="fields">
           <button type="button" class="button expanded" [disabled]="!questionInputForm.valid && questionInputForm.touched">
-            Add question
+            Add Question
           </button>
         </div>
       </form>
-
-
     </div>
   </div>
 </div>
