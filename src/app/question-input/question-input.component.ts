@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Tag} from '../tags/tag';
 import {QuestionService} from './question.service';
 import 'rxjs/add/operator/debounceTime';
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 
 @Component({
   selector: 'app-question-input',

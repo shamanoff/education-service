@@ -14,11 +14,10 @@
           <h5>Discipline</h5>
           <span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>
 
-          <select  [(ngModel)]="selectedTag"
-                   formControlName="tag"
-                   [ngClass]="{'has-error': reqErrMsg}"
+          <select  formControlName="tag"
+                   [(ngModel)]="selectedTag"
+                   [ngClass]="{'has-error': reqErrMsg}">
 
-          >
             <option *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
             </select >
         </div>
