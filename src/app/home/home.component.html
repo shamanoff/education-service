@@ -1,1 +1,11 @@
-
+<h1>Welcome Home</h1>
+<div *ngFor="let q of (question$ | async) | reverse " >
+  <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
+  <p *ngIf="q.answerOne" >{{q.answerOne}}</p>
+  <p *ngIf="q.answerTwo" >{{q.answerTwo}}</p>
+  <p *ngIf="q.answerThree" >{{q.answerThree}}</p>
+  <p *ngIf="q.answerFour" >{{q.answerFour}}</p>
+  <hr>
+  <p *ngIf="q.correctAnswer" >{{q.correctAnswer}}</p>
+  <hr>
+</div>

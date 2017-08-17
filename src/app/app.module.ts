@@ -14,6 +14,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { TagsComponent } from './tags/tags.component';
 import {QuestionService} from './question-input/question.service';
+import { ReversePipe } from './reverse.pipe';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDN4lCRC7LfoRBHMowfX1eCGZFfl9HVR9U',
@@ -30,7 +31,8 @@ export const firebaseConfig = {
     ExzamChooserComponent,
     HeaderComponent,
     HomeComponent,
-    TagsComponent
+    TagsComponent,
+    ReversePipe
   ],
   imports: [
     FormsModule,

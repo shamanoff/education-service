@@ -10,7 +10,8 @@ export class QuestionService {
   }
 
   getQuestions() {
-    this.question$ = this._db.list('/questions');
+    this.question$ = this._db.list('/questions') as
+      FirebaseListObservable<Question[]>;
     return this.question$;
   }
 

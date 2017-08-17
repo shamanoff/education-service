@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {Tag} from '../tags/tag';
 import {QuestionService} from './question.service';
 import 'rxjs/add/operator/debounceTime';
-import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
   selector: 'app-question-input',
@@ -34,7 +34,7 @@ export class QuestionInputComponent implements OnInit {
   ngOnInit() {
     this.questionInputForm = this._fb.group({
       tag: ['', [Validators.required]],
-      question: ['', [Validators.required]],
+      questionInput: ['', [Validators.required]],
       answerOne: ['', [Validators.required]],
       answerTwo: ['', [Validators.required]],
       answerThree: ['', [Validators.required]],
@@ -43,7 +43,7 @@ export class QuestionInputComponent implements OnInit {
 
     });
 
-    const questControl = this.questionInputForm.get('question');
+    const questControl = this.questionInputForm.get('questionInput');
     questControl.valueChanges.debounceTime(1000)
       .subscribe(
         value => this.setReqMsg(questControl)
@@ -66,7 +66,7 @@ export class QuestionInputComponent implements OnInit {
     console.log('submit work');
     const data = {
       tag: formData.value.tag,
-      question: formData.value.question,
+      question: formData.value.questionInput,
       answerOne: formData.value.answerOne,
       answerTwo: formData.value.answerTwo,
       answerThree: formData.value.answerThree,
