@@ -1,4 +1,3 @@
-<div class="row align-center container">
   <div class="small-12 medium-6 columns">
     <div class="card">
       <h2>New Question</h2>
@@ -28,7 +27,7 @@
         <div class="fields">
           <h5>Question</h5>
           <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
-          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
+          <textarea  class="form-control"
                  id="question"
                  type="text"
                  placeholder="Question"
@@ -40,7 +39,7 @@
         <div class="fields">
           <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
-          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
+          <textarea  class="form-control"
                  id="answerOne"
                  type="text"
                  placeholder="Answer One"
@@ -51,7 +50,7 @@
         <div class="fields">
           <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
-          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
+          <textarea class="form-control"
                     id="answerTwo"
                     type="text"
                     placeholder="Answer Two"
@@ -62,7 +61,7 @@
         <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
         <div class="fields">
-          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
+          <textarea  class="form-control"
                     id="answerThree"
                     type="text"
                     placeholder="Answer Three"
@@ -73,7 +72,7 @@
         <div class="fields">
           <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
-          <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
+          <textarea  class="form-control"
                     id="answerFour"
                     type="text"
                     placeholder="Answer Four"
@@ -82,7 +81,7 @@
         </div>
 
         <div class="fields">
-        <fieldset class="large-6 columns">
+        <fieldset>
           <h5>Correct Answer</h5>
           <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
@@ -99,4 +98,6 @@
       </form>
     </div>
   </div>
-</div>
+  <div class="small-12 medium-6 columns">
+<app-home></app-home>
+  </div>

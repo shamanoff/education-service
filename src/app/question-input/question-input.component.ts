@@ -7,7 +7,7 @@ import 'rxjs/add/operator/debounceTime';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
-  selector: 'app-question-input',
+  selector: 'question-input',
   templateUrl: './question-input.component.html',
   styleUrls: ['./question-input.component.scss']
 })
@@ -158,7 +158,7 @@ export class QuestionInputComponent implements OnInit {
     console.log('submit work');
     const data = {
       tag: formData.value.tag,
-      question: formData.value.questionInput,
+      questionInput: formData.value.questionInput,
       answerOne: formData.value.answerOne,
       answerTwo: formData.value.answerTwo,
       answerThree: formData.value.answerThree,

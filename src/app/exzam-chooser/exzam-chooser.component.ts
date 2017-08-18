@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-exzam-chooser',
+  selector: 'exzam-chooser',
   templateUrl: './exzam-chooser.component.html',
   styleUrls: ['./exzam-chooser.component.scss']
 })

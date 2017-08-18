@@ -1,5 +1,5 @@
 
-<div class="small-12 medium-6 columns card" >
+<div class="card" >
 
 <h1>All Questions</h1>
   <br>
@@ -14,17 +14,16 @@
   <br>
 <div *ngFor="let q of (question$ | async) | reverse | filter:filteredStatus:'tag' " >
   <h6 *ngIf="q.tag" >Descipline: {{q.tag}}</h6>
-  <h6 *ngIf="q.tag" >Question: </h6>
-  <p *ngIf="q.questionInput" >{{q.questionInput}}</p>
+  <h6 >Question: </h6>
+  <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
   <h6>Answers Options:</h6>
-  <p *ngIf="q.answerOne" >{{q.answerOne}}</p>
-  <p *ngIf="q.answerTwo" >{{q.answerTwo}}</p>
-  <p *ngIf="q.answerThree" >{{q.answerThree}}</p>
-  <p *ngIf="q.answerFour" >{{q.answerFour}}</p>
-  <br>
-  <h6>Correct Answer:</h6>
-  <p *ngIf="q.correctAnswer" >{{q.correctAnswer}}</p>
+  <p *ngIf="q.answerOne" >1. {{q.answerOne}}</p>
+  <p *ngIf="q.answerTwo" >2. {{q.answerTwo}}</p>
+  <p *ngIf="q.answerThree" >3. {{q.answerThree}}</p>
+  <p *ngIf="q.answerFour" >4. {{q.answerFour}}</p>
   <br>
   <hr>
 </div>
 </div>
+
+
