@@ -12,19 +12,22 @@
         <!--question input-->
         <div class="fields">
           <h5>Discipline</h5>
-          <span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>
+          <!--<span class="error" *ngIf="tagMsg">{{ tagMsg }}</span>-->
 
           <select  formControlName="tag"
                    [(ngModel)]="selectedTag"
-                   [ngClass]="{'has-error': reqErrMsg}">
+                   [ngClass]="{'has-error': tagMsg}"
 
-            <option *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
+          >
+
+            <option  >Choose Discipline</option>
+            <option  *ngFor="let tag of tag$ | async" >{{tag.name}}</option>
             </select >
         </div>
         <!--question input-->
         <div class="fields">
           <h5>Question</h5>
-          <span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>
+          <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
           <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                  id="question"
                  type="text"
@@ -35,6 +38,8 @@
         <h5>Answers</h5>
 
         <div class="fields">
+          <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
+
           <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                  id="answerOne"
                  type="text"
@@ -44,6 +49,8 @@
         </div>
 
         <div class="fields">
+          <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
+
           <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                     id="answerTwo"
                     type="text"
@@ -51,6 +58,8 @@
                     formControlName="answerTwo"></textarea>
 
         </div>
+
+        <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
 
         <div class="fields">
           <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
@@ -62,6 +71,8 @@
         </div>
 
         <div class="fields">
+          <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
+
           <textarea [ngClass]="{'has-error': reqErrMsg}" class="form-control"
                     id="answerFour"
                     type="text"
@@ -73,6 +84,8 @@
         <div class="fields">
         <fieldset class="large-6 columns">
           <h5>Correct Answer</h5>
+          <!--<span class="error" *ngIf="reqErrMsg">{{ reqErrMsg }}</span>-->
+
           <input type="radio" name="correctAnswer" value="0" id="one" formControlName="correctAnswer"><label for="one">Answer One</label>
           <input type="radio" name="correctAnswer" value="1" id="two" formControlName="correctAnswer"><label for="two">Answer Two</label>
           <input type="radio" name="correctAnswer" value="2" id="three" formControlName="correctAnswer"><label for="three">Answer Three</label>

@@ -1,11 +1,30 @@
-<h1>Welcome Home</h1>
-<div *ngFor="let q of (question$ | async) | reverse " >
-  <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
+
+<div class="small-12 medium-6 columns card" >
+
+<h1>All Questions</h1>
+  <br>
+
+  <select  #filtred [(ngModel)]="filteredStatus">
+
+    <option  value="">Choose Discipline</option>
+    <option  *ngFor="let tag of tag$ | async" value="{{tag.name}}">{{tag.name}}</option>
+  </select >
+
+
+  <br>
+<div *ngFor="let q of (question$ | async) | reverse | filter:filteredStatus:'tag' " >
+  <h6 *ngIf="q.tag" >Descipline: {{q.tag}}</h6>
+  <h6 *ngIf="q.tag" >Question: </h6>
+  <p *ngIf="q.questionInput" >{{q.questionInput}}</p>
+  <h6>Answers Options:</h6>
   <p *ngIf="q.answerOne" >{{q.answerOne}}</p>
   <p *ngIf="q.answerTwo" >{{q.answerTwo}}</p>
   <p *ngIf="q.answerThree" >{{q.answerThree}}</p>
   <p *ngIf="q.answerFour" >{{q.answerFour}}</p>
-  <hr>
+  <br>
+  <h6>Correct Answer:</h6>
   <p *ngIf="q.correctAnswer" >{{q.correctAnswer}}</p>
+  <br>
   <hr>
+</div>
 </div>

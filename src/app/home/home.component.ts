@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Question} from '../question-input/question';
 import {Router} from '@angular/router';
 import {QuestionService} from '../question-input/question.service';
+import {Tag} from '../tags/tag';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,8 @@ import {QuestionService} from '../question-input/question.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  filteredStatus = '';
+  tag$: FirebaseListObservable<Tag[]>;
 
   question$: FirebaseListObservable<Question[]>;
 
@@ -17,9 +20,19 @@ export class HomeComponent implements OnInit {
               private _db: AngularFireDatabase,
               private _qs: QuestionService) {
     this.question$ = this._qs.getQuestions();
+    this.tag$ = this._db.list('/tags');
+
   }
 
   ngOnInit() {
   }
+
+/*
+  filterDiscipline(discipline) {
+    console.log('filter work ' + discipline);
+
+
+  }
+*/
 
 }
