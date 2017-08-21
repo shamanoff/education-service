@@ -5,7 +5,7 @@ import {QuestionService} from '../question-input/question.service';
 import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {forEach} from "@angular/router/src/utils/collection";
+import {FullExam} from './fullExam';
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -17,12 +17,13 @@ export class ExzamChooserComponent implements OnInit {
   tag$: FirebaseListObservable<Tag[]>;
   questionsIds: Array<string> = [];
   question$: FirebaseListObservable<Question[]>;
+  currentExam: FullExam;
   currentFormData = {};
 
   constructor(public router: Router,
               private _db: AngularFireDatabase,
               private _qs: QuestionService,
-              private _fb: FormBuilder,) {
+              private _fb: FormBuilder, ) {
     this.question$ = this._qs.getQuestions();
     this.tag$ = this._db.list('/tags');
 
@@ -32,14 +33,14 @@ export class ExzamChooserComponent implements OnInit {
     return this._fb.group({
       discipline: ['', [Validators.required]],
       questionsCount: ['', [Validators.required]]
-    })
+    });
   }
 
   ngOnInit(): void {
 
     this.examForm = this._fb.group({
       exams: this._fb.array([this.buildExams()])
-    })
+    });
 
     /*    this._db.list('/questions',
         { preserveSnapshot: true })
@@ -66,7 +67,10 @@ export class ExzamChooserComponent implements OnInit {
 
   onSubmit(formData) {
 // console.log(formData.value)
-    this.currentFormData = formData.value;
-    console.log(this.currentFormData)
+//     this.currentFormData = formData.value;
+    const p = Object.assign({}, this.currentExam, formData.value);
+
+    console.log(JSON.stringify(p));
+    this.examForm.reset();
   }
 }

@@ -43,7 +43,8 @@ export class QuestionInputComponent implements OnInit {
       correctAnswer: ['', [Validators.required]],
 
     });
-    const tagControl = this.questionInputForm.get('tag');
+
+/*    const tagControl = this.questionInputForm.get('tag');
     tagControl.valueChanges.debounceTime(1000)
       .subscribe(
         value => this.setTagMsg(tagControl)
@@ -79,11 +80,11 @@ export class QuestionInputComponent implements OnInit {
     correctAnswerControl.valueChanges.debounceTime(1000)
       .subscribe(
         value => this.setCorrectAnswerMsg(correctAnswerControl)
-      );
+      );*/
   }
 
 
-  setTagMsg(c: AbstractControl): void {
+/*  setTagMsg(c: AbstractControl): void {
     this.tagMsg = '';
     if (c.errors) {
       this.reqErrMsg = Object.keys(c.errors)
@@ -151,7 +152,7 @@ export class QuestionInputComponent implements OnInit {
         .join(' ');
       console.log(Object.keys(c.errors));
     }
-  }
+  }*/
 
 
   onSubmit(formData) {
