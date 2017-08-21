@@ -4,8 +4,7 @@ import {Router} from '@angular/router';
 import {QuestionService} from '../question-input/question.service';
 import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
-import {element} from 'protractor';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -28,8 +27,19 @@ export class ExzamChooserComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this._db.list('/questions',
+  buildExams(): FormGroup {
+    return this._fb.group({
+      discipline: '',
+      questionsCount: ''
+    })
+  }
+  ngOnInit(): void {
+
+    this.examForm = this._fb.group({
+      exams: this._fb.array([this.buildExams()])
+    })
+
+/*    this._db.list('/questions',
     { preserveSnapshot: true })
        .subscribe(snapshots => {
         snapshots.forEach(snapshot => {
@@ -38,9 +48,16 @@ export class ExzamChooserComponent implements OnInit {
         });
       }
     );
-console.log(this.questionsIds);
+console.log(this.questionsIds);*/
   }
 
+  get exams(): FormArray{
+    return <FormArray>this.examForm.get('exams');
+  }
+
+  addExamSet():void{
+    this.exams.push(this.buildExams());
+  }
   onSubmit(formData){
 
   }

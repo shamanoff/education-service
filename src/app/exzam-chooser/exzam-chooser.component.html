@@ -1,17 +1,33 @@
-<div class="column row card"  >
+<div class="column row card">
   <h1>New Examination Generator</h1>
   <br>
-<form #formData="ngForm" novalidate
-      (ngSubmit)="onSubmit(formData)"
-      [formGroup]="examForm">
-  <div class="row" *ngFor="let tag of tag$ | async" >
-    <div class="small-4 columns">
-      <label for="middle-label" class=" middle"><h4>{{tag.name}}</h4></label>
+  <form #formData="ngForm" novalidate
+        (ngSubmit)="onSubmit(formData)"
+        [formGroup]="examForm">
+    <div class="row" formArrayName="exams"
+    *ngFor="let exam of exams.controls; let i=index"
+    >
+      <div [formGroupName]="i">
+        <select formControlName="discipline">
+          <option value="">Choose Discipline</option>
+          <option *ngFor="let tag of tag$ | async" value="{{tag.name}}">{{tag.name}}</option>
+        </select>
+
+        <select formControlName="questionsCount">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+      </div>
+      <input class="button hollow " type="button" value="Add Exam Set"
+      (click)="addExamSet()"
+      >
+
+
     </div>
-    <div class="small-8 columns">
-      <input type="number" id="middle-label" placeholder="Number of Questions">
-    </div>
-  </div>
-  <input class="button large expanded " type="submit" value="Generate Examination">
-</form>
+    <input class="button large expanded " type="submit" value="Generate Examination">
+  </form>
 </div>
