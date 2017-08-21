@@ -5,6 +5,7 @@ import {QuestionService} from '../question-input/question.service';
 import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -16,12 +17,12 @@ export class ExzamChooserComponent implements OnInit {
   tag$: FirebaseListObservable<Tag[]>;
   questionsIds: Array<string> = [];
   question$: FirebaseListObservable<Question[]>;
+  currentFormData = {};
 
   constructor(public router: Router,
               private _db: AngularFireDatabase,
               private _qs: QuestionService,
-              private _fb: FormBuilder,
-  ) {
+              private _fb: FormBuilder,) {
     this.question$ = this._qs.getQuestions();
     this.tag$ = this._db.list('/tags');
 
@@ -33,32 +34,41 @@ export class ExzamChooserComponent implements OnInit {
       questionsCount: ['', [Validators.required]]
     })
   }
+
   ngOnInit(): void {
 
     this.examForm = this._fb.group({
       exams: this._fb.array([this.buildExams()])
     })
 
-/*    this._db.list('/questions',
-    { preserveSnapshot: true })
-       .subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          this.questionsIds.push(snapshot.key);
-          // console.log(snapshot.key, snapshot.val());
-        });
-      }
-    );
-console.log(this.questionsIds);*/
+    /*    this._db.list('/questions',
+        { preserveSnapshot: true })
+           .subscribe(snapshots => {
+            snapshots.forEach(snapshot => {
+              this.questionsIds.push(snapshot.key);
+              // console.log(snapshot.key, snapshot.val());
+            });
+          }
+        );
+    console.log(this.questionsIds);*/
   }
 
-  get exams(): FormArray{
+  get exams(): FormArray {
     return <FormArray>this.examForm.get('exams');
   }
 
-  addExamSet():void{
+  addExamSet(): void {
     this.exams.push(this.buildExams());
   }
-  onSubmit(formData){
-console.log(formData.value)
+
+  getProp(data: string[]) {
+
+
+  }
+
+  onSubmit(formData) {
+// console.log(formData.value)
+    this.currentFormData = formData.value;
+    console.log(this.currentFormData)
   }
 }
