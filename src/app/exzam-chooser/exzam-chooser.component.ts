@@ -6,6 +6,7 @@ import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FullExam} from './fullExam';
+import {ExamSection} from './examSection';
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -62,7 +63,11 @@ export class ExzamChooserComponent implements OnInit {
     this.exams.push(this.buildExams());
   }
 
-  getProp(data: string[]) {
+  getProp(data: FullExam) {
+    let cur : { [key:string]:number; } = {};
+    console.log(JSON.stringify(data));
+
+
   }
 
   onSubmit(formData) {
@@ -70,7 +75,8 @@ export class ExzamChooserComponent implements OnInit {
 //     this.currentFormData = formData.value;
     const p = Object.assign({}, this.currentExam, formData.value);
 
-    console.log(JSON.stringify(p));
+    // console.log(JSON.stringify(p));
     this.examForm.reset();
+    this.getProp(p);
   }
 }
