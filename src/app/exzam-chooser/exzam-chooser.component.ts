@@ -62,8 +62,6 @@ export class ExzamChooserComponent implements OnInit {
   }
 
   getProp(data: string[]) {
-
-
   }
 
   onSubmit(formData) {
