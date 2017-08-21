@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {QuestionService} from '../question-input/question.service';
 import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -29,8 +29,8 @@ export class ExzamChooserComponent implements OnInit {
 
   buildExams(): FormGroup {
     return this._fb.group({
-      discipline: '',
-      questionsCount: ''
+      discipline: ['', [Validators.required]],
+      questionsCount: ['', [Validators.required]]
     })
   }
   ngOnInit(): void {
@@ -59,6 +59,6 @@ console.log(this.questionsIds);*/
     this.exams.push(this.buildExams());
   }
   onSubmit(formData){
-
+console.log(formData.value)
   }
 }

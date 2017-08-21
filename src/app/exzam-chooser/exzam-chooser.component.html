@@ -8,13 +8,15 @@
     *ngFor="let exam of exams.controls; let i=index"
     >
       <div [formGroupName]="i">
+        <h6>Examination Section</h6>
         <select formControlName="discipline">
           <option value="">Choose Discipline</option>
           <option *ngFor="let tag of tag$ | async" value="{{tag.name}}">{{tag.name}}</option>
         </select>
 
         <select formControlName="questionsCount">
-          <option value="1">1</option>
+          <option value="" selected>Choose number of questions</option>
+          <option value="1" >1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -22,12 +24,13 @@
         </select>
 
       </div>
-      <input class="button hollow " type="button" value="Add Exam Set"
-      (click)="addExamSet()"
-      >
-
 
     </div>
-    <input class="button large expanded " type="submit" value="Generate Examination">
+    <div class="row">
+      <input class="button hollow large small-12 medium-3 columns " type="button" value="Add Section" (click)="addExamSet()" [disabled]="!examForm.valid">
+      <input class="button large small-12 medium-6 columns" type="submit" value="Generate Examination" [disabled]="!examForm.valid">
+
+    </div>
+
   </form>
 </div>
