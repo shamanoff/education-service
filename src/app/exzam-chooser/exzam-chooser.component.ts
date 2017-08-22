@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionService} from '../question-input/question.service';
 import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
@@ -9,6 +9,7 @@ import {FullExam} from './fullExam';
 import * as _ from "lodash";
 import {ExamSection} from './examSection';
 import {ExamService} from "./exam.service";
+import {router} from '../app.routes';
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -22,8 +23,10 @@ export class ExzamChooserComponent implements OnInit {
   question$: FirebaseListObservable<Question[]>;
   exam$: FirebaseListObservable<FullExam[]>;
   currentExam: FullExam;
+  key: string;
 
   constructor(public router: Router,
+              private route: ActivatedRoute,
               private _db: AngularFireDatabase,
               private _qs: QuestionService,
               private _fb: FormBuilder,
@@ -72,13 +75,15 @@ export class ExzamChooserComponent implements OnInit {
 
   }
 
-  onSubmit(formData) {
+  onSubmit(formData): string {
 
     const p = Object.assign({}, this.currentExam, formData.value);
     console.log(p);
-    this._exS.addExam(p);
-
+    this.key = this._exS.addExam(p);
+    console.log(this.key + ' Submit work');
     // this.exam$.push(p);
     this.examForm.reset();
+    this.router.navigate(['/test/'+this.key], {relativeTo: this.route});
+    return this.key;
   }
 }

@@ -14,6 +14,7 @@ export const router: Routes = [
   {path: 'question', component: QuestionInputComponent},
   {path: 'exam', component: ExzamChooserComponent},
   {path: 'test', component: TestComponent},
+  {path: 'test/:key', component: TestComponent},
 
 
 ];
