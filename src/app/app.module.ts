@@ -17,6 +17,7 @@ import {QuestionService} from './question-input/question.service';
 import { ReversePipe } from './reverse.pipe';
 import { FilterPipe } from './filter.pipe';
 import { TestComponent } from './test/test.component';
+import {ExamService} from "./exzam-chooser/exam.service";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDN4lCRC7LfoRBHMowfX1eCGZFfl9HVR9U',
@@ -48,7 +49,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [QuestionService, FormsModule],
+  providers: [QuestionService, FormsModule, ExamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

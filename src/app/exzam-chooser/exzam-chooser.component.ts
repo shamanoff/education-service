@@ -6,7 +6,9 @@ import {Tag} from '../tags/tag';
 import {Question} from '../question-input/question';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FullExam} from './fullExam';
+import * as _ from "lodash";
 import {ExamSection} from './examSection';
+import {ExamService} from "./exam.service";
 
 @Component({
   selector: 'app-exzam-chooser',
@@ -18,13 +20,14 @@ export class ExzamChooserComponent implements OnInit {
   tag$: FirebaseListObservable<Tag[]>;
   questionsIds: Array<string> = [];
   question$: FirebaseListObservable<Question[]>;
+  exam$: FirebaseListObservable<FullExam[]>;
   currentExam: FullExam;
-  currentFormData = {};
 
   constructor(public router: Router,
               private _db: AngularFireDatabase,
               private _qs: QuestionService,
-              private _fb: FormBuilder, ) {
+              private _fb: FormBuilder,
+              private _exS: ExamService) {
     this.question$ = this._qs.getQuestions();
     this.tag$ = this._db.list('/tags');
 
@@ -40,7 +43,7 @@ export class ExzamChooserComponent implements OnInit {
   ngOnInit(): void {
 
     this.examForm = this._fb.group({
-      exams: this._fb.array([this.buildExams()])
+      examGroup: this._fb.array([this.buildExams()])
     });
 
     /*    this._db.list('/questions',
@@ -55,28 +58,27 @@ export class ExzamChooserComponent implements OnInit {
     console.log(this.questionsIds);*/
   }
 
-  get exams(): FormArray {
-    return <FormArray>this.examForm.get('exams');
+  get examGroup(): FormArray {
+    return <FormArray>this.examForm.get('examGroup');
   }
 
   addExamSet(): void {
-    this.exams.push(this.buildExams());
+    this.examGroup.push(this.buildExams());
   }
 
   getProp(data: FullExam) {
-    let cur : { [key:string]:number; } = {};
-    console.log(JSON.stringify(data));
-
+    // let curMap : { [key:string]:string; } = {};
+    this.currentExam = data;
 
   }
 
   onSubmit(formData) {
-// console.log(formData.value)
-//     this.currentFormData = formData.value;
-    const p = Object.assign({}, this.currentExam, formData.value);
 
-    // console.log(JSON.stringify(p));
+    const p = Object.assign({}, this.currentExam, formData.value);
+    console.log(p);
+    this._exS.addExam(p);
+
+    // this.exam$.push(p);
     this.examForm.reset();
-    this.getProp(p);
   }
 }

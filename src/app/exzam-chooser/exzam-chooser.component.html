@@ -4,8 +4,8 @@
   <form #formData="ngForm" novalidate
         (ngSubmit)="onSubmit(formData)"
         [formGroup]="examForm">
-    <div class="row" formArrayName="exams"
-    *ngFor="let exam of exams.controls; let i=index"
+    <div class="row" formArrayName="examGroup"
+    *ngFor="let exam of examGroup.controls; let i=index"
     >
       <div [formGroupName]="i">
         <h6>Examination Section</h6>
