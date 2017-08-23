@@ -8,10 +8,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TestComponent implements OnInit {
 
+  key: string;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params['key']);
+    this.key = this.route.snapshot.params['key'];
+    // console.log(this.route.snapshot.toString());
   }
 
 }
