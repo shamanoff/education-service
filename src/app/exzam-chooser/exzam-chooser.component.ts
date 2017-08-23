@@ -80,7 +80,7 @@ export class ExzamChooserComponent implements OnInit {
     const p = Object.assign({}, this.currentExam, formData.value);
     console.log(p);
     this.key = this._exS.addExam(p);
-    console.log(this.key + ' Submit work');
+    // console.log(this.key + ' Submit work');
     // this.exam$.push(p);
     this.examForm.reset();
     this.router.navigate(['/test/'+this.key], {relativeTo: this.route});

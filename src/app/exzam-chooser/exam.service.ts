@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FullExam} from './fullExam';
 import {promise} from 'selenium-webdriver';
 
 @Injectable()
 export class ExamService {
 
+  curExam: FirebaseObjectObservable<FullExam>;
   public exam$: FirebaseListObservable<FullExam[]>;
 
   constructor(private _db: AngularFireDatabase) {
@@ -19,11 +20,14 @@ export class ExamService {
     return this.exam$;
   }
 
-  addExam(data) {
-    let k = this.exam$.push(data).key;
+  getExamByKey(key){
+    this.curExam = this._db.object('/exams/'+ key, { preserveSnapshot: true }) as
+      FirebaseObjectObservable<FullExam>;
+    return this.curExam;
 
-    console.log(k);
-    return k;
-    // console.log('ADD ' + JSON.stringify(data));
+  }
+
+  addExam(data) {
+      return this.exam$.push(data).key;
   }
 }
