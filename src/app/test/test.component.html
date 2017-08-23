@@ -4,3 +4,8 @@
 <div *ngIf="!key"  class="column row card">
   <input type="text" placeholder="Input Examination ID">
 </div>
+<div *ngIf="key"  class="column row card">
+  <div  >
+    <h6 >Exam: {{(curExam | async ) | json }}</h6>
+  </div>
+</div>

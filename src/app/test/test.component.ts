@@ -14,7 +14,6 @@ import {ExamService} from "../exzam-chooser/exam.service";
 export class TestComponent implements OnInit {
   question$: FirebaseListObservable<Question[]>;
   curExam: FirebaseObjectObservable<FullExam>;
-
   key: string;
 
   constructor(private route: ActivatedRoute,
@@ -23,9 +22,8 @@ export class TestComponent implements OnInit {
               private _eS: ExamService) {
     this.key = this.route.snapshot.params['key'];
     this.question$ = this._qS.getQuestions();
-    console.log(this.key + ' KEY')
+    console.log(this.key + ' KEY');
     this.curExam = this._eS.getExamByKey(this.key);
-    this.curExam.subscribe(snap => console.log(JSON.stringify(snap)))
 
   }
 
