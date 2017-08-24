@@ -38,16 +38,17 @@ export class TestComponent implements OnInit{
 
   }
 
-
-  getCurExamByKey(key){
-    let mapE = {};
-    this.curExam = this._eS.getExamByKey(key);
+  exGen(){
     this.curExam.subscribe(
       (v)=>{
         console.log(v)
       }
     );
+  }
 
+  getCurExamByKey(key){
+
+    this.curExam = this._eS.getExamByKey(key);
   }
 
 
