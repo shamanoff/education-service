@@ -5,9 +5,10 @@
   <input type="text" placeholder="Input Examination ID">
 </div>
 <div *ngIf="key"  class="column row card">
-  <h6  >Exam: {{httpExam | json}} </h6>
+  <h6  >Exam: </h6>
 
-  <div  *ngFor="">
-    <h6 >Exam: </h6>
+  <div  *ngFor="let e of curExam | async ">
+    <h6 > {{e.discipline}}: {{e.questionsCount}}</h6>
+
   </div>
 </div>

@@ -2,11 +2,14 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FullExam} from './fullExam';
 import {Http, Response} from '@angular/http';
+import {ExamSection} from "./examSection";
+import * as _ from "lodash";
 
 @Injectable()
 export class ExamService {
-httpExam: FullExam;
-  curExam: FirebaseObjectObservable<FullExam>;
+  mapCount: Array<ExamSection> = [];
+  httpExam: FullExam;
+  public curExam: FirebaseListObservable<ExamSection[]>;
   public exam$: FirebaseListObservable<FullExam[]>;
 
   constructor(private _db: AngularFireDatabase,
@@ -21,16 +24,19 @@ httpExam: FullExam;
     return this.exam$;
   }
 
-/*  getExamByKey(key){
-    this.curExam = this._db.object('/exams/'+ key, { preserveSnapshot: true }) as
-      FirebaseObjectObservable<FullExam>;
-    return this.curExam;
+    getExamByKey(key){
+      this.curExam = this._db.list('/exams/'+ key + '/examGroup') as
+        FirebaseListObservable<ExamSection[]>;
+      return this.curExam;
 
-  }*/
-  getExamByKey(key): any {
+    }
+/*  getExamByKey(key): any {
     return this._http.get('https://education-project-89f6a.firebaseio.com/exams/' + key + '.json');
-  }
+  }*/
+
+
+
   addExam(data) {
-      return this.exam$.push(data).key;
+    return this.exam$.push(data).key;
   }
 }
