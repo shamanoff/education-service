@@ -7,6 +7,7 @@ import {FullExam} from '../exzam-chooser/fullExam';
 import {ExamService} from '../exzam-chooser/exam.service';
 import {Response} from '@angular/http';
 import {ExamSection} from "../exzam-chooser/examSection";
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-test',
@@ -36,9 +37,20 @@ export class TestComponent implements OnInit{
     // this.onGet(this.key);
 
   }
+
+
   getCurExamByKey(key){
-    return this.curExam = this._eS.getExamByKey(key);
+    let mapE = {};
+    this.curExam = this._eS.getExamByKey(key);
+    this.curExam.subscribe(
+      (v)=>{
+        console.log(v)
+      }
+    );
+
   }
+
+
 /*
   onGet(key) {
     this._eS.getExamByKey(key)
