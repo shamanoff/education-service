@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FullExam} from './fullExam';
-import {promise} from 'selenium-webdriver';
 import {Http, Response} from '@angular/http';
 
 @Injectable()
@@ -28,16 +27,8 @@ httpExam: FullExam;
     return this.curExam;
 
   }*/
-  getExamByKey(key): any{
-    return this._http.get('https://education-project-89f6a.firebaseio.com/exams/' + key + '.json')
- /*   .subscribe(
-      (response: Response) => {
-        this.httpExam = response.json();
-        console.log('get work!');
-        // return this.httpExam;
-
-      }
-    );*/
+  getExamByKey(key): any {
+    return this._http.get('https://education-project-89f6a.firebaseio.com/exams/' + key + '.json');
   }
   addExam(data) {
       return this.exam$.push(data).key;

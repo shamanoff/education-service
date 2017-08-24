@@ -5,8 +5,9 @@
   <input type="text" placeholder="Input Examination ID">
 </div>
 <div *ngIf="key"  class="column row card">
-  <div  >
-    <!--<h6 >Exam: {{(curExam | async ) | json }}</h6>-->
-    <h6  >Exam: {{httpExam | json}} </h6>
+  <h6  >Exam: {{httpExam | json}} </h6>
+
+  <div  *ngFor="">
+    <h6 >Exam: </h6>
   </div>
 </div>

@@ -29,7 +29,6 @@ export class TestComponent implements OnInit {
     // this.curExam = this._eS.getExamByKey(this.key);
     // this.httpExam = this._eS.getExamByKey(this.key);
     this.onGet(this.key);
-    console.log('constructor work!');
 
   }
 
@@ -39,7 +38,7 @@ export class TestComponent implements OnInit {
         (response: Response) => {
           this.httpExam = response.json();
           console.log(this.httpExam);
-        }
+        }, (error) => console.log(error)
       );
   }
 
