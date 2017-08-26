@@ -54,7 +54,7 @@ export class ExzamChooserComponent implements OnInit {
            .subscribe(snapshots => {
             snapshots.forEach(snapshot => {
               this.questionsIds.push(snapshot.key);
-              // console.log(snapshot.key, snapshot.val());
+              // console.log(snapshot.key, snapshot.val);
             });
           }
         );
@@ -78,7 +78,7 @@ export class ExzamChooserComponent implements OnInit {
   onSubmit(formData): string {
 
     const p = Object.assign({}, this.currentExam, formData.value);
-    console.log(p);
+    // console.log(p);
     this.key = this._exS.addExam(p);
     // console.log(this.key + ' Submit work');
     // this.exam$.push(p);

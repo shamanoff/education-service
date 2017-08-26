@@ -15,12 +15,15 @@ import * as _ from 'lodash';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
+  public finalQuestionSet: Array<Question> = [];
 
-  curExam: FirebaseListObservable<ExamSection[]>;
-public idAr: string[]=[];
-  question$: FirebaseListObservable<Question[]>;
-  // curExam: FirebaseObjectObservable<FullExam>;
-  httpExam: FullExam;
+
+  public mapEx: Map<string, string> = new Map<string, string>();
+
+  public curExam: FirebaseListObservable<ExamSection[]>;
+
+  public question$: FirebaseListObservable<Question[]>;
+
   key: string;
 
 
@@ -29,29 +32,56 @@ public idAr: string[]=[];
               private _qS: QuestionService,
               private _eS: ExamService) {
     this.key = this.route.snapshot.params['key'];
-    this.question$ = this._qS.getQuestions();
     console.log(this.key + ' KEY');
-    this.getCurExamByKey(this.key);
-    this.idAr = this._qS.getIdsArray('Java');
-    console.log(this.idAr)
     // this.curExam = this._eS.getExamByKey(this.key);
-    // this.httpExam = this._eS.getExamByKey(this.key);
-    // this.onGet(this.key);
+    this._eS.getExamByKey(this.key).subscribe(  exam => {
+      _.forEach(exam, function (e) {
+        console.log(e.discipline, e.questionsCount);
+        const dis: string = e.discipline;
+        const count: string = e.questionsCount;
+        if (dis != null) {
+          this.question$ = this._db.list('/questions', {
+            query: {
+              orderByChild: 'tag',
+              equalTo: dis,
+            }
+          });
+        } else {
+          this.question$ = this._db.list('/questions') as
+            FirebaseListObservable<Question[]>;
+        }
+        this.question$.subscribe(quest => console.log(quest));
+        return this.question$;
+      });
+    });
+    // this._qS.getQuestions('Java');
+    // this.listOfQuestionsFormer(this.key);
+    // this.finalQuestionSet = this._qS.totalGen(this.key);
 
   }
 
-  exGen() {
+  generateExam(){
+    this.listOfQuestionsFormer();
+  }
+
+  listOfQuestionsFormer() {
+
     this.curExam.subscribe(
-      (v) => {
-        console.log(v);
+      exam => {
+       _.forEach(exam, function (e) {
+         console.log(e.discipline, e.questionsCount);
+         const dis: string = e.discipline;
+         const count: string = e.questionsCount;
+         this._qS.getQuestions('Java');
+
+       });
       }
     );
+    /*console.log('FINAL 2');
+    console.log(this.finalQuestionSet);*/
+
   }
 
-  getCurExamByKey(key) {
-
-    this.curExam = this._eS.getExamByKey(key);
-  }
 
 
   /*
@@ -68,6 +98,7 @@ public idAr: string[]=[];
   */
 
   ngOnInit() {
+
   }
 
 }

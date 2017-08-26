@@ -1,14 +1,16 @@
-<div *ngIf="key"  class="column row card">
-  <h1 class="text-center">{{key}}</h1>
+<div *ngIf="key" class="column row card">
+  <h4 class="text-center">{{key}}</h4>
 </div>
-<div *ngIf="!key"  class="column row card">
+<div *ngIf="!key" class="column row card">
   <input type="text" placeholder="Input Examination ID">
 </div>
-<div *ngIf="key"  class="column row card">
-  <h6  >Exam: </h6>
-
-  <div  *ngFor="let e of curExam | async ">
-    <h6 > {{e.discipline}}: {{e.questionsCount}}</h6>
+<div *ngIf="key" class="column row card">
+  <h2>The exam will contain: </h2>
+  <br>
+  <div *ngFor="let e of curExam | async ">
+    <h4>Descipline: {{e.discipline}} | Questions: {{e.questionsCount}}</h4>
 
   </div>
+  <br>
+  <input type="button" class="button large expanded" value="Generate Exam" (click)="generateExam()">
 </div>

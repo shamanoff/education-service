@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FullExam} from './fullExam';
 import {Http, Response} from '@angular/http';
-import {ExamSection} from "./examSection";
-import * as _ from "lodash";
+import {ExamSection} from './examSection';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ExamService {
@@ -25,7 +25,7 @@ export class ExamService {
   }
 
     getExamByKey(key){
-      this.curExam = this._db.list('/exams/'+ key + '/examGroup') as
+      this.curExam = this._db.list('/exams/' + key + '/examGroup') as
         FirebaseListObservable<ExamSection[]>;
       return this.curExam;
 
