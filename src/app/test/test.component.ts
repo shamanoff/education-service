@@ -71,6 +71,9 @@ export class TestComponent implements OnInit {
   findExamById(key){
     this.router.navigate(['/test/'+ key.target.value], {relativeTo: this.route});
   }
+  saveExam(){
+
+  }
 
   /*
     onGet(key) {
