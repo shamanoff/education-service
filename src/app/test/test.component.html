@@ -2,7 +2,7 @@
   <h4 class="text-center">{{key}}</h4>
 </div>
 <div *ngIf="!key" class="column row card">
-  <input type="text" placeholder="Input Examination ID">
+  <input type="text" placeholder="Input Examination ID" (keyup)="findExamById($event)" value="">
 </div>
 <div *ngIf="key" class="column row card">
   <h2>The exam will contain: </h2>
@@ -12,5 +12,36 @@
 
   </div>
   <br>
-  <input type="button" class="button large expanded" value="Generate Exam" (click)="generateExam()">
+  <!--<input type="button" class="button large expanded" value="Generate Exam" (click)="generateExam()">-->
 </div>
+
+<br>
+  <h2 class="text-center" *ngIf="key">The Examination</h2>
+  <br>
+  <div *ngFor="let e of finalQuestionSet  " class="column row card">
+    <h4>{{e.tag}} Question:</h4>
+    <h6>{{e.questionInput}}</h6>
+    <hr>
+    <h4>Answers Options:</h4>
+    <p>1: {{e.answerOne}}</p>
+    <p>2: {{e.answerTwo}}</p>
+    <p>3: {{e.answerThree}}</p>
+    <p>4: {{e.answerFour}}</p>
+    <hr>
+    <div class="fields">
+      <h4>Choose correct answer</h4>
+      <!--<span class="error" *ngIf="tagMsg">{{ tagMsg }}</span>-->
+
+      <select  >
+
+        <option  >Choose </option>
+        <option  >1</option>
+        <option  >2</option>
+        <option  >3</option>
+        <option  >4</option>
+      </select >
+    </div>
+
+    <br>
+  </div>
+<br>

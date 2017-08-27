@@ -1,5 +1,5 @@
 import {AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Question} from '../question-input/question';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {QuestionService} from '../question-input/question.service';
@@ -30,6 +30,7 @@ export class TestComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
+              public router: Router,
               private _db: AngularFireDatabase,
               private _qS: QuestionService,
               private _eS: ExamService) {
@@ -57,16 +58,19 @@ export class TestComponent implements OnInit {
     const exam = this._eS.getExamByKey(this.key);
     console.log('Ex');
     exam.subscribe(ex => {
-      for( let i: number = 0; i < ex.length; i++) {
-        let a = _.assign({discipline: '', questionsCount: ''}, ex[i] );
+      for (let i = 0; i < ex.length; i++) {
+        const a = _.assign({discipline: '', questionsCount: ''}, ex[i]);
         // console.log(a.discipline, a.questionsCount)
-             this.finalQuestionSet = this._qS.getTotal(a.discipline, a.questionsCount);
+        this.finalQuestionSet = this._qS.getTotal(a.discipline, a.questionsCount);
 
       }
     });
 
   }
 
+  findExamById(key){
+    this.router.navigate(['/test/'+ key.target.value], {relativeTo: this.route});
+  }
 
   /*
     onGet(key) {
