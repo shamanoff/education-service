@@ -60,7 +60,7 @@ export class TestComponent implements OnInit {
       for( let i: number = 0; i < ex.length; i++) {
         let a = _.assign({discipline: '', questionsCount: ''}, ex[i] );
         // console.log(a.discipline, a.questionsCount)
-             this._qS.getTotal(a.discipline, a.questionsCount);
+             this.finalQuestionSet = this._qS.getTotal(a.discipline, a.questionsCount);
 
       }
     });
