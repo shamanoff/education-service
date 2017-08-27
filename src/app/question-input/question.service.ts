@@ -20,6 +20,7 @@ export class QuestionService {
   }
 // -----------------------------
 
+/*
   totalGen(key): any{
     let curexam: FirebaseListObservable<ExamSection[]>;
     let questionsIds: Array<string> = [];
@@ -89,24 +90,16 @@ export class QuestionService {
 
 
   }
+*/
 
 
-
-// -----------------------------
-
-
-
-/*
-getIdsArray(dis, count): any {
+getIdsArray(dis:string, count:string): any {
     console.log('getIdsArray');
-
-    // --------------------------------------------------------------
     this._db.list('/questions', {
       preserveSnapshot: true,
       query: {
         orderByChild: 'tag',
         equalTo: dis,
-
       },
     }).subscribe(snapshots => {
       snapshots.forEach(snapshot => {
@@ -114,44 +107,10 @@ getIdsArray(dis, count): any {
         // console.log(snapshot.key);
       });
       console.log('A ' + this.questionsIds);
-      // ------------------------------------------
-      console.log('randomizer');
-      for (let i = 0; i < count; i++) {
-        const a = this.questionsIds[Math.floor(Math.random() * this.questionsIds.length)];
-        console.log('A '+ a);
-        this.qIds.push(a);
-      }
-      console.log('qIds ');
-      console.log(this.qIds);
-      // return this.qIds;
-      // --------------------------------------
-      const q = this.qIds.length;
-      for (let i = 0; i < q; i++) {
-        const key = this.qIds[i];
-        console.log('KEY '+ key);
-        // -----------------------------------
-        // const quest = this.getQuestionById(key);
-        this._http.get('https://education-project-89f6a.firebaseio.com/questions/' + key + '.json',)
-          .subscribe((response: Response) => {
-              const resQuest = response.json();
-              this.finalQuestionSet.push(resQuest);
-
-            }, (error) => console.log(error)
-          );
-        // ---------------------------------------
-      }
-      console.log('FINAL 1');
-      console.log(this.finalQuestionSet);
-      return this.finalQuestionSet;
-      // return this.questionsIds;
     });
-
-    // ------------------------------------------------------------------------------------
-
   }
-*/
 
-/*
+
   randomaizer(count) {
     console.log('randomizer');
     for (let i = 0; i < count; i++) {
@@ -162,7 +121,6 @@ getIdsArray(dis, count): any {
     console.log('qIds ');
     console.log(this.qIds);
   }
-*/
 
 /*  getQuestionById(key): any {
     console.log('getQuestionById');
@@ -176,15 +134,13 @@ getIdsArray(dis, count): any {
 
   }*/
 
-  /*  getQuestionById(key) {
+    getQuestionById(key) {
       console.log('getQuestionById');
-      let a;
       this._db.object('/questions/' + key, { preserveSnapshot: true } )
         .subscribe(snapshot => {
           console.log(snapshot.val)
         });
-
-    }*/
+    }
 
   getQuestions(tag: string = null) {
     console.log('getQuestions');

@@ -30,9 +30,11 @@ export class ExamService {
       return this.curExam;
 
     }
-/*  getExamByKey(key): any {
+/*
+  getExamByKey(key): any {
     return this._http.get('https://education-project-89f6a.firebaseio.com/exams/' + key + '.json');
-  }*/
+  }
+*/
 
 
 

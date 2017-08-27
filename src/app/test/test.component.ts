@@ -8,6 +8,8 @@ import {ExamService} from '../exzam-chooser/exam.service';
 import {Response} from '@angular/http';
 import {ExamSection} from '../exzam-chooser/examSection';
 import * as _ from 'lodash';
+import 'rxjs/Rx';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-test',
@@ -34,54 +36,46 @@ export class TestComponent implements OnInit {
     this.key = this.route.snapshot.params['key'];
     console.log(this.key + ' KEY');
     // this.curExam = this._eS.getExamByKey(this.key);
-    this._eS.getExamByKey(this.key).subscribe(  exam => {
-      _.forEach(exam, function (e) {
-        console.log(e.discipline, e.questionsCount);
-        const dis: string = e.discipline;
-        const count: string = e.questionsCount;
-        if (dis != null) {
-          this.question$ = this._db.list('/questions', {
-            query: {
-              orderByChild: 'tag',
-              equalTo: dis,
-            }
-          });
-        } else {
-          this.question$ = this._db.list('/questions') as
-            FirebaseListObservable<Question[]>;
-        }
-        this.question$.subscribe(quest => console.log(quest));
-        return this.question$;
-      });
-    });
+    this.listOfQuestionsFormer();
+
     // this._qS.getQuestions('Java');
     // this.listOfQuestionsFormer(this.key);
     // this.finalQuestionSet = this._qS.totalGen(this.key);
 
   }
 
-  generateExam(){
-    this.listOfQuestionsFormer();
+  generateExam() {
+    // this.listOfQuestionsFormer();
+  }
+
+  print(x) {
+    console.log(x);
+    return x;
   }
 
   listOfQuestionsFormer() {
+    const exam = this._eS.getExamByKey(this.key);
+    console.log('Ex');
+    // exam.subscribe(ex => console.log(ex));
 
-    this.curExam.subscribe(
-      exam => {
-       _.forEach(exam, function (e) {
-         console.log(e.discipline, e.questionsCount);
-         const dis: string = e.discipline;
-         const count: string = e.questionsCount;
-         this._qS.getQuestions('Java');
+    exam.subscribe(ex => {
+      console.log(ex);
 
-       });
+      for( let i: number = 0; i < ex.length; i++) {
+        let a = _.assign({discipline: '', questionsCount: ''}, ex[i] );
+        console.log(a.discipline, a.questionsCount)
+        // console.log(ex[i].discipline)
+        // let {discipline, questionsCount} = ex[i];
+
+
+        // let _discipline = ex[i].discipline;
+        // let _questionsCount = ex[i-1].questionsCount;
+
+        // this._qS.getIdsArray( _discipline, _questionsCount);
       }
-    );
-    /*console.log('FINAL 2');
-    console.log(this.finalQuestionSet);*/
+    });
 
   }
-
 
 
   /*
