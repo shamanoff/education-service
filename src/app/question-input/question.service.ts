@@ -11,14 +11,15 @@ export class QuestionService {
   public question$: FirebaseListObservable<Question[]>;
   public finalQuestionSet: Array<Question> = [];
   // public curExam: FirebaseListObservable<ExamSection[]>;
-  questionsIds: Array<string> = [];
+  // questionsIds: Array<string> = [];
 
-  qIds: Array<string> = [];
+  // qIds: Array<string> = [];
   // resQuest: Question;
 
   constructor(private _db: AngularFireDatabase, private _http: Http) {
   }
 // -----------------------------
+
 
 /*
   totalGen(key): any{
@@ -93,8 +94,32 @@ export class QuestionService {
 */
 
 
-getIdsArray(dis:string, count:string): any {
+/*// getting array ids by tag
+getIdsArray(dis:string): any {
     console.log('getIdsArray');
+  const questionsIds: Array<string> = [];
+
+  this._db.list('/questions', {
+      preserveSnapshot: true,
+      query: {
+        orderByChild: 'tag',
+        equalTo: dis,
+      },
+    }).subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+        questionsIds.push(snapshot.key);
+        // console.log(snapshot.key);
+      });
+      console.log('A ' + questionsIds);
+      return questionsIds;
+    });
+}*/
+
+// getting array ids by tag
+  getTotal(dis:string, count:string): any {
+    console.log('getIdsArray');
+    const questionsIds: Array<string> = [];
+
     this._db.list('/questions', {
       preserveSnapshot: true,
       query: {
@@ -103,23 +128,25 @@ getIdsArray(dis:string, count:string): any {
       },
     }).subscribe(snapshots => {
       snapshots.forEach(snapshot => {
-        this.questionsIds.push(snapshot.key);
+        questionsIds.push(snapshot.key);
         // console.log(snapshot.key);
       });
-      console.log('A ' + this.questionsIds);
+      console.log('A ' + questionsIds);
+      let ids = this.randomaizer(count, questionsIds);
+      console.log(ids)
+      // return questionsIds;
     });
+
   }
 
-
-  randomaizer(count) {
+  randomaizer(count, questionsIds): any {
     console.log('randomizer');
+    const qIds: Array<string> = [];
     for (let i = 0; i < count; i++) {
-      const a = this.questionsIds[Math.floor(Math.random() * this.questionsIds.length)];
-      console.log('A '+ a);
-      this.qIds.push(a);
+      const a = questionsIds[Math.floor(Math.random() * questionsIds.length)];
+      qIds.push(a);
     }
-    console.log('qIds ');
-    console.log(this.qIds);
+    return qIds;
   }
 
 /*  getQuestionById(key): any {

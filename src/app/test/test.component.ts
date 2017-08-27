@@ -35,7 +35,7 @@ export class TestComponent implements OnInit {
               private _eS: ExamService) {
     this.key = this.route.snapshot.params['key'];
     console.log(this.key + ' KEY');
-    // this.curExam = this._eS.getExamByKey(this.key);
+    this.curExam = this._eS.getExamByKey(this.key);
     this.listOfQuestionsFormer();
 
     // this._qS.getQuestions('Java');
@@ -56,22 +56,12 @@ export class TestComponent implements OnInit {
   listOfQuestionsFormer() {
     const exam = this._eS.getExamByKey(this.key);
     console.log('Ex');
-    // exam.subscribe(ex => console.log(ex));
-
     exam.subscribe(ex => {
-      console.log(ex);
-
       for( let i: number = 0; i < ex.length; i++) {
         let a = _.assign({discipline: '', questionsCount: ''}, ex[i] );
-        console.log(a.discipline, a.questionsCount)
-        // console.log(ex[i].discipline)
-        // let {discipline, questionsCount} = ex[i];
+        // console.log(a.discipline, a.questionsCount)
+             this._qS.getTotal(a.discipline, a.questionsCount);
 
-
-        // let _discipline = ex[i].discipline;
-        // let _questionsCount = ex[i-1].questionsCount;
-
-        // this._qS.getIdsArray( _discipline, _questionsCount);
       }
     });
 
