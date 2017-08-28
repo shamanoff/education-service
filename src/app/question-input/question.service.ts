@@ -143,6 +143,8 @@ export class QuestionService {
         this._http.get('https://education-project-89f6a.firebaseio.com/questions/' + ids[i] + '.json')
           .subscribe((response: Response) => {
               const resQuest: Question = response.json();
+              console.log(resQuest);
+              // тут возможно нужно добавить айди в объект
               // return resQuest;
             this.finalQuestionSet.push(resQuest);
             }, (error) => console.log(error)

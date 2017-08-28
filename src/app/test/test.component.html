@@ -2,7 +2,8 @@
   <h4 class="text-center">{{key}}</h4>
 </div>
 <div *ngIf="!key" class="column row card">
-  <input type="text" placeholder="Input Examination ID" (keyup)="findExamById($event)" value="">
+  <input type="text" placeholder="Input Examination ID"
+         (keyup)="findExamById($event)" value="">
 </div>
 <div *ngIf="key" class="column row card">
   <h2>The exam will contain: </h2>
@@ -17,7 +18,8 @@
 <br>
   <h2 class="text-center" *ngIf="key">The Examination</h2>
   <br>
-  <div *ngFor="let e of finalQuestionSet  " class="column row card">
+  <div *ngFor="let e of finalQuestionSet; let i = index  "
+       class="column row card">
     <h4>{{e.tag}} Question:</h4>
     <h6>{{e.questionInput}}</h6>
     <hr>
@@ -26,6 +28,7 @@
     <p>2: {{e.answerTwo}}</p>
     <p>3: {{e.answerThree}}</p>
     <p>4: {{e.answerFour}}</p>
+
     <hr>
     <div class="fields">
       <h4>Choose correct answer</h4>
@@ -33,15 +36,17 @@
 
       <select  >
 
-        <option  >Choose </option>
-        <option  >1</option>
-        <option  >2</option>
-        <option  >3</option>
-        <option  >4</option>
+        <option value="" selected>Choose </option>
+        <option value="1" >1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
       </select >
     </div>
 
     <br>
   </div>
 <br>
-<input type="button" class="button large column row float-center" value="Save Examination" (click)="saveExam()">
+<input *ngIf="key" type="button"
+       class="button large column row float-center"
+       value="Save Examination" (click)="saveExam()">
