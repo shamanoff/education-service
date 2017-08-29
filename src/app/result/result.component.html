@@ -1,0 +1,19 @@
+<div *ngIf="key" class="column row card">
+  <h4 class="text-center">{{key}}</h4>
+</div>
+<div *ngIf="!key" class="column row card">
+  <input type="text" placeholder="Input Result ID"
+         (keyup)="findResultById($event)" value="">
+</div>
+<div *ngIf="key" class="column row card">
+  <h2>The exam will contain: </h2>
+</div>
+
+<br>
+<h2 class="text-center" *ngIf="key">The Examination</h2>
+<br>
+<div >
+
+</div>
+<br>
+

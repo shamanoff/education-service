@@ -34,7 +34,7 @@
       <h4>Choose correct answer</h4>
       <!--<span class="error" *ngIf="tagMsg">{{ tagMsg }}</span>-->
 
-      <select  >
+      <select #select (click)="setUserAnswer(i, select.value )" >
 
         <option value="" selected>Choose </option>
         <option value="1" >1</option>

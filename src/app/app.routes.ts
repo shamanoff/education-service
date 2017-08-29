@@ -6,6 +6,7 @@ import {QuestionInputComponent} from "./question-input/question-input.component"
 import {ExzamChooserComponent} from "./exzam-chooser/exzam-chooser.component";
 import {HomeComponent} from "./home/home.component";
 import {TestComponent} from './test/test.component';
+import {ResultComponent} from "./result/result.component";
 // import { EmailComponent } from './email/email.component';
 
 export const router: Routes = [
@@ -15,6 +16,7 @@ export const router: Routes = [
   {path: 'exam', component: ExzamChooserComponent},
   {path: 'test', component: TestComponent},
   {path: 'test/:key', component: TestComponent},
+  {path: 'result', component: ResultComponent}
 
 
 ];

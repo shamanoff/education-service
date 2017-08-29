@@ -28,6 +28,7 @@ export class TestComponent implements OnInit {
 
   key: string;
 
+  public userAnswers: Array<string> = [];
 
   constructor(private route: ActivatedRoute,
               public router: Router,
@@ -45,8 +46,10 @@ export class TestComponent implements OnInit {
 
   }
 
-  generateExam() {
-    // this.listOfQuestionsFormer();
+  setUserAnswer(i, select){
+    this.userAnswers[i] = select;
+    console.log('i, select');
+    console.log(this.userAnswers);
   }
 
   print(x) {
