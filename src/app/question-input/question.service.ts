@@ -4,11 +4,13 @@ import {Question} from './question';
 import {Http, Response} from '@angular/http';
 import {ExamSection} from '../exzam-chooser/examSection';
 import * as _ from 'lodash';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class QuestionService {
 
   public question$: FirebaseListObservable<Question[]>;
+
   public finalQuestionSet: Array<Question> = [];
   // public curExam: FirebaseListObservable<ExamSection[]>;
   // questionsIds: Array<string> = [];
@@ -118,9 +120,10 @@ export class QuestionService {
 
 // getting array ids by tag
 
+
   getTotal(dis: string, count: string): any {
     console.log('getIdsArray');
-    this.finalQuestionSet=  [];
+    this.finalQuestionSet =  [];
     const questionsIds: Array<string> = [];
 
     this._db.list('/questions', {
@@ -144,7 +147,6 @@ export class QuestionService {
         this._http.get('https://education-project-89f6a.firebaseio.com/questions/' + ids[i] + '.json')
           .subscribe((response: Response) => {
               const resQuest: Question = response.json();
-              console.log(resQuest);
               // тут возможно нужно добавить айди в объект
               // return resQuest;
             this.finalQuestionSet.push(resQuest);
@@ -160,47 +162,7 @@ export class QuestionService {
 
 
 
-/*
-  getTotal(dis: string, count: string): any {
-    console.log('getIdsArray');
-    this.finalQuestionSet=  [];
-    const questionsIds: Array<string> = [];
 
-    this._db.list('/questions', {
-      preserveSnapshot: true,
-      query: {
-        orderByChild: 'tag',
-        equalTo: dis,
-      },
-    }).subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        questionsIds.push(snapshot.key);
-        // console.log(snapshot.key);
-      });
-      console.log('A ' + questionsIds);
-      const ids = this.randomaizer(count, questionsIds);
-      console.log(ids);
-      // return questionsIds;
-      for (let i = 0; i < ids.length; i++) {
-        console.log(ids[i] + 'IDs');
-        // -----------------------------------------------
-        this._db.object('https://education-project-89f6a.firebaseio.com/questions/' + ids[i])
-          .subscribe((response: Response) => {
-              const resQuest: Question = response.json();
-              console.log(resQuest);
-              // тут возможно нужно добавить айди в объект
-              // return resQuest;
-              this.finalQuestionSet.push(resQuest);
-            }, (error) => console.log(error)
-          );
-
-      }
-    });
-    console.log('finalQuestionSet');
-    console.log(this.finalQuestionSet);
-    return this.finalQuestionSet;
-  }
-*/
 
 
   randomaizer(count, questionsIds): any {

@@ -9,10 +9,10 @@ import {Response} from '@angular/http';
 import {ExamSection} from '../exzam-chooser/examSection';
 import * as _ from 'lodash';
 import 'rxjs/Rx';
-import {Observable} from "rxjs/Observable";
-import {ResultService} from "../result/result.service";
-import {Result} from "../result/result";
-import {ResultsSet} from "../result/resultsSet";
+import {Observable} from 'rxjs/Observable';
+import {ResultService} from '../result/result.service';
+import {Result} from '../result/result';
+import {ResultsSet} from '../result/resultsSet';
 
 @Component({
   selector: 'app-test',
@@ -20,7 +20,8 @@ import {ResultsSet} from "../result/resultsSet";
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  public finalQuestionSet: Array<Question> = [];
+  // public finalQuestionSet: Array<Question> = [];
+  public finalQuestionSet: FirebaseListObservable<Question[]>;
 
   public finalResultsSet: ResultsSet;
 
@@ -85,9 +86,9 @@ export class TestComponent implements OnInit {
   saveExam() {
     console.log('SAVE Work');
     this.finalResultsSet = [];
-    let tempArrayOfResults: Array<Result> = [];
+    const tempArrayOfResults: Array<Result> = [];
     for (let i = 0; i < this.userAnswers.length; i++) {
-      const ans = ''+this.userAnswers[i];
+      const ans = '' + this.userAnswers[i];
       const res = _.assign({
         'tag': '',
         'questionInput': '',
@@ -102,9 +103,15 @@ export class TestComponent implements OnInit {
     }
     this.finalResultsSet = tempArrayOfResults;
     console.log(this.finalResultsSet);
-    this.resKey = this._rS.addResults(this.finalResultsSet);
-    this.router.navigate(['/result/' + this.resKey], {relativeTo: this.route});
-    return this.resKey;
+    // this.resKey = this._rS.addResults(this.finalResultsSet);
+    this._rS.addResults(this.finalResultsSet)
+      .subscribe(
+        (response: Response) => {this.resKey = response.json().name;
+          this.router.navigate(['/result/' + this.resKey], {relativeTo: this.route});
+
+        },
+        error => console.log(error)
+      );
   }
 
   /*

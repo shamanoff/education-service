@@ -16,7 +16,8 @@ export const router: Routes = [
   {path: 'exam', component: ExzamChooserComponent},
   {path: 'test', component: TestComponent},
   {path: 'test/:key', component: TestComponent},
-  {path: 'result', component: ResultComponent}
+  {path: 'result', component: ResultComponent},
+  {path: 'result/:key', component: ResultComponent}
 
 
 ];

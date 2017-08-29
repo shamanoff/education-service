@@ -5,15 +5,31 @@
   <input type="text" placeholder="Input Result ID"
          (keyup)="findResultById($event)" value="">
 </div>
-<div *ngIf="key" class="column row card">
+<!--<div *ngIf="key" class="column row card">
   <h2>The exam will contain: </h2>
-</div>
+</div>-->
 
 <br>
-<h2 class="text-center" *ngIf="key">The Examination</h2>
+<h2 class="text-center" *ngIf="key">Completed Exam</h2>
 <br>
-<div >
+<div *ngIf="key" class="column row card" >
 
+   <br>
+  <div *ngFor="let q of (result$ | async) " >
+    <h6 *ngIf="q.tag" >Descipline: {{q.tag}}</h6>
+    <h6 >Question: </h6>
+    <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
+    <h6>Answers Options:</h6>
+    <p *ngIf="q.answerOne" ><b>1.</b> {{q.answerOne}}</p>
+    <p *ngIf="q.answerTwo" ><b>2.</b> {{q.answerTwo}}</p>
+    <p *ngIf="q.answerThree" ><b>3.</b> {{q.answerThree}}</p>
+    <p *ngIf="q.answerFour" ><b>4.</b> {{q.answerFour}}</p>
+    <hr>
+    <h3  *ngIf="q.userAnswer" [ngStyle]="{'color':q.userAnswer === q.correctAnswer ? 'green': 'tomato' }">User Answer:  {{q.userAnswer}}</h3>
+    <h6 *ngIf="q.correctAnswer" >Correct Answer:  {{q.correctAnswer}}</h6>
+    <hr>
+    <br>
+  </div>
 </div>
 <br>
 
