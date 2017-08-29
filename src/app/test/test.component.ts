@@ -10,6 +10,9 @@ import {ExamSection} from '../exzam-chooser/examSection';
 import * as _ from 'lodash';
 import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
+import {ResultService} from "../result/result.service";
+import {Result} from "../result/result";
+import {ResultsSet} from "../result/resultsSet";
 
 @Component({
   selector: 'app-test',
@@ -19,6 +22,7 @@ import {Observable} from "rxjs/Observable";
 export class TestComponent implements OnInit {
   public finalQuestionSet: Array<Question> = [];
 
+  public finalResultsSet: ResultsSet;
 
   public mapEx: Map<string, string> = new Map<string, string>();
 
@@ -27,6 +31,7 @@ export class TestComponent implements OnInit {
   public question$: FirebaseListObservable<Question[]>;
 
   key: string;
+  resKey: string;
 
   public userAnswers: Array<string> = [];
 
@@ -34,7 +39,8 @@ export class TestComponent implements OnInit {
               public router: Router,
               private _db: AngularFireDatabase,
               private _qS: QuestionService,
-              private _eS: ExamService) {
+              private _eS: ExamService,
+              private _rS: ResultService) {
     this.key = this.route.snapshot.params['key'];
     console.log(this.key + ' KEY');
     this.curExam = this._eS.getExamByKey(this.key);
@@ -46,11 +52,6 @@ export class TestComponent implements OnInit {
 
   }
 
-  setUserAnswer(i, select){
-    this.userAnswers[i] = select;
-    console.log('i, select');
-    console.log(this.userAnswers);
-  }
 
   print(x) {
     console.log(x);
@@ -71,11 +72,39 @@ export class TestComponent implements OnInit {
 
   }
 
-  findExamById(key){
-    this.router.navigate(['/test/'+ key.target.value], {relativeTo: this.route});
+  findExamById(key) {
+    this.router.navigate(['/test/' + key.target.value], {relativeTo: this.route});
   }
-  saveExam(){
 
+  setUserAnswer(i, select) {
+    this.userAnswers[i] = select;
+    console.log('i, select');
+    console.log(this.userAnswers);
+  }
+
+  saveExam() {
+    console.log('SAVE Work');
+    this.finalResultsSet = [];
+    let tempArrayOfResults: Array<Result> = [];
+    for (let i = 0; i < this.userAnswers.length; i++) {
+      const ans = ''+this.userAnswers[i];
+      const res = _.assign({
+        'tag': '',
+        'questionInput': '',
+        'answerOne': '',
+        'answerTwo': '',
+        'answerThree': '',
+        'answerFour': '',
+        'correctAnswer': '',
+        'userAnswer': ans,
+      }, this.finalQuestionSet[i]);
+      tempArrayOfResults.push(res);
+    }
+    this.finalResultsSet = tempArrayOfResults;
+    console.log(this.finalResultsSet);
+    this.resKey = this._rS.addResults(this.finalResultsSet);
+    this.router.navigate(['/result/' + this.resKey], {relativeTo: this.route});
+    return this.resKey;
   }
 
   /*
