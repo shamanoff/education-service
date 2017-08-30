@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
-$primary-color: #3568cc;
+$primary-color: #29674c;
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 $roboto: 'Roboto Condensed', sans-serif;
 
@@ -51,4 +51,10 @@ body{
 }
 .container{
   min-height: 47.6rem;
+}
+
+.tag{
+  color: white;
+
+  background-color: $primary-color ;
 }

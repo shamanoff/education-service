@@ -16,7 +16,7 @@
 
    <br>
   <div *ngFor="let q of (result$ | async) " >
-    <h6 *ngIf="q.tag" >Descipline: {{q.tag}}</h6>
+    <h6 *ngIf="q.tag" class="primary label">Descipline: {{q.tag}}</h6>
     <h6 >Question: </h6>
     <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
     <h6>Answers Options:</h6>

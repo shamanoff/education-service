@@ -13,14 +13,14 @@
 
   <br>
 <div *ngFor="let q of (question$ | async) | reverse | filter:filteredStatus:'tag' " >
-  <h6 *ngIf="q.tag" >Descipline: {{q.tag}}</h6>
+  <h4 *ngIf="q.tag" class="primary label">Descipline: {{q.tag}}</h4>
   <h6 >Question: </h6>
   <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
   <h6>Answers Options:</h6>
-  <p *ngIf="q.answerOne" >1. {{q.answerOne}}</p>
-  <p *ngIf="q.answerTwo" >2. {{q.answerTwo}}</p>
-  <p *ngIf="q.answerThree" >3. {{q.answerThree}}</p>
-  <p *ngIf="q.answerFour" >4. {{q.answerFour}}</p>
+  <p *ngIf="q.answerOne" ><b>1.</b> {{q.answerOne}}</p>
+  <p *ngIf="q.answerTwo" ><b>2.</b> {{q.answerTwo}}</p>
+  <p *ngIf="q.answerThree" ><b>3.</b> {{q.answerThree}}</p>
+  <p *ngIf="q.answerFour" ><b>4.</b> {{q.answerFour}}</p>
   <br>
   <hr>
 </div>
