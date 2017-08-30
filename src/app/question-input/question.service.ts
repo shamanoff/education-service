@@ -137,12 +137,12 @@ export class QuestionService {
         questionsIds.push(snapshot.key);
         // console.log(snapshot.key);
       });
-      console.log('A ' + questionsIds);
+      // console.log('A ' + questionsIds);
       const ids = this.randomaizer(count, questionsIds);
-      console.log(ids);
+      // console.log(ids);
       // return questionsIds;
       for (let i = 0; i < ids.length; i++) {
-      console.log(ids[i] + 'IDs');
+      // console.log(ids[i] + 'IDs');
      // -----------------------------------------------
         this._http.get('https://education-project-89f6a.firebaseio.com/questions/' + ids[i] + '.json')
           .subscribe((response: Response) => {
@@ -155,8 +155,8 @@ export class QuestionService {
 
       }
     });
-    console.log('finalQuestionSet');
-    console.log(this.finalQuestionSet);
+    // console.log('finalQuestionSet');
+    // console.log(this.finalQuestionSet);
     return this.finalQuestionSet;
   }
 
