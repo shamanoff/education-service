@@ -33,7 +33,7 @@ export class TestComponent implements OnInit {
 
   key: string;
   resKey: string;
-
+  error:boolean =  false;
   public userAnswers: Array<string> = [];
 
   constructor(private route: ActivatedRoute,
@@ -75,7 +75,11 @@ export class TestComponent implements OnInit {
 
   findExamById(key) {
 
-    this.router.navigate(['/test/' + key.target.value], {relativeTo: this.route});
+    console.log('EVENT');
+    console.log(key.target.validity.valid);
+    if(key.target.validity.valid) {
+      this.router.navigate(['/test/' + key.target.value], {relativeTo: this.route});
+    }else this.error = true;
   }
 
   setUserAnswer(i, select) {
@@ -107,7 +111,8 @@ export class TestComponent implements OnInit {
     // this.resKey = this._rS.addResults(this.finalResultsSet);
     this._rS.addResults(this.finalResultsSet)
       .subscribe(
-        (response: Response) => {this.resKey = response.json().name;
+        (response: Response) => {
+          this.resKey = response.json().name;
           this.router.navigate(['/result/' + this.resKey], {relativeTo: this.route});
 
         },

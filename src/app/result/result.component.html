@@ -3,7 +3,9 @@
 </div>
 <div *ngIf="!key" class="column row card">
   <input type="text" placeholder="Input Result ID"
-         (keyup)="findResultById($event)" value="">
+         (keyup)="findResultById($event)" value="" minlength=20>
+  <span *ngIf="error" class="error">Paste Result ID</span>
+
 </div>
 <!--<div *ngIf="key" class="column row card">
   <h2>The exam will contain: </h2>

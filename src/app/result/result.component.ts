@@ -12,6 +12,7 @@ export class ResultComponent implements OnInit {
 
 public result$: FirebaseListObservable<Result[]>;
   key: string;
+  error:boolean =  false;
 
   constructor(private route: ActivatedRoute,
               public router: Router,
@@ -28,7 +29,8 @@ public result$: FirebaseListObservable<Result[]>;
   }
 
   findResultById(key) {
-    this.router.navigate(['/result/' + key.target.value], {relativeTo: this.route});
-
+    if(key.target.validity.valid) {
+      this.router.navigate(['/result/' + key.target.value], {relativeTo: this.route});
+    }else this.error = true;
   }
 }
