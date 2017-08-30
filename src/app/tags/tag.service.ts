@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
-import {Tag} from "./tag";
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {Tag} from './tag';
 
 @Injectable()
 export class TagService {
 
-  public discipline$: FirebaseListObservable<Tag[]>;
-  constructor(private _db: AngularFireDatabase) { }
+  public discipline$: FirebaseListObservable<Tag>;
+  constructor(private _db: AngularFireDatabase) {
+      this.discipline$ = this._db.list('/tags');
+  }
 
   getDis(){
-    return this.discipline$ = this._db.list('/tags') as FirebaseListObservable<Tag[]>;
+    return this.discipline$ = this._db.list('/tags') as FirebaseListObservable<Tag>;
   }
 
   addDis(data){

@@ -74,9 +74,6 @@ export class TestComponent implements OnInit {
   }
 
   findExamById(key) {
-
-    console.log('EVENT');
-    console.log(key.target.validity.valid);
     if(key.target.validity.valid) {
       this.router.navigate(['/test/' + key.target.value], {relativeTo: this.route});
     }else this.error = true;

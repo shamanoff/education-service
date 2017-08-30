@@ -20,6 +20,7 @@ import { TestComponent } from './test/test.component';
 import {ExamService} from "./exzam-chooser/exam.service";
 import { ResultComponent } from './result/result.component';
 import {ResultService} from "./result/result.service";
+import {TagService} from './tags/tag.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDN4lCRC7LfoRBHMowfX1eCGZFfl9HVR9U',
@@ -52,7 +53,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [QuestionService, FormsModule, ExamService, ResultService],
+  providers: [QuestionService, FormsModule, ExamService, ResultService, TagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

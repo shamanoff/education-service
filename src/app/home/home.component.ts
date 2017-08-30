@@ -27,12 +27,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-/*
-  filterDiscipline(discipline) {
-    console.log('filter work ' + discipline);
-
-
+  deleteQuestion(key) {
+    this.question$.remove(key);
   }
-*/
+
+  /*
+    filterDiscipline(discipline) {
+      console.log('filter work ' + discipline);
+
+
+    }
+  */
 
 }

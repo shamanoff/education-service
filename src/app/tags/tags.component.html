@@ -1,15 +1,44 @@
-<div class="card">
+<div class="card" *ngIf="!onAdding">
   <div class="row">
     <h2 class="small-8 columns">All Disciplines</h2>
-    <input class="button float-right small-4 columns" type="button"  value="Add New Discipline">
+    <input class="button float-right small-4 columns" type="button" value="Add New Discipline" (click)="open()">
   </div>
 
   <div *ngFor="let d of discipline$ | async" class="row">
     <br>
-    <div class="small-10 columns">{{d.name}}</div>
-    <div class="small-1 columns"><i style="cursor:pointer" class="fi-pencil"></i></div>
-    <div class="small-1 columns" [ngStyle]="{'color': 'tomato'}" ><i style="cursor:pointer" class="fi-x"></i></div>
+    <div class="small-11 columns"><h4>{{d.name}}</h4></div>
+   <!-- <div class="small-1 columns">
+      <i style="cursor:pointer" class="fi-pencil"
+      (click)="onUpdate(d)"></i></div>-->
+    <div class="small-1 columns" [ngStyle]="{'color': 'tomato'}">
+      <i style="cursor:pointer" class="fi-x"
+      (click)="onDelete(d.$key)"></i></div>
     <br>
     <hr>
   </div>
 </div>
+<!--Adding form-->
+<div class="card" *ngIf="onAdding">
+  <div class="row">
+    <h2 class="small-11 columns">Add New Discipline</h2>
+    <div class="small-1 columns"><i style="cursor:pointer" class="fi-x" (click)="close()"></i></div>
+  </div>
+  <br>
+  <form #formData="ngForm" novalidate
+        (ngSubmit)="onAdd(formData)"
+        [formGroup]="disInputForm">
+
+  <div class="small-9 columns">
+    <input  class="fields in form-control"
+            type="text"
+            formControlName="name"
+            placeholder="New Discipline Name">
+  </div>
+  <div class="small-3 columns">
+    <input type="submit"
+           class="button expanded"
+           value="Save" ></div>
+  </form>
+  <br>
+</div>
+

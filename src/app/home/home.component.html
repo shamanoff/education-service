@@ -10,10 +10,11 @@
     <option  *ngFor="let tag of tag$ | async" value="{{tag.name}}">{{tag.name}}</option>
   </select >
 
-
+  <br>
   <br>
 <div *ngFor="let q of (question$ | async) | reverse | filter:filteredStatus:'tag' " >
   <h4 *ngIf="q.tag" class="primary label">Descipline: {{q.tag}}</h4>
+  <br>
   <h6 >Question: </h6>
   <h6 *ngIf="q.questionInput" >{{q.questionInput}}</h6>
   <h6>Answers Options:</h6>
@@ -22,7 +23,9 @@
   <p *ngIf="q.answerThree" ><b>3.</b> {{q.answerThree}}</p>
   <p *ngIf="q.answerFour" ><b>4.</b> {{q.answerFour}}</p>
   <br>
+  <input type="button" class="button alert" value="Delete" (click)="deleteQuestion(q.$key)">
   <hr>
+  <br>
 </div>
 </div>
 
