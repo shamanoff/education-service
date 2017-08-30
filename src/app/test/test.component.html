@@ -2,8 +2,8 @@
   <h4 class="text-center">{{key}}</h4>
 </div>
 <div *ngIf="!key" class="column row card">
-  <input type="text" placeholder="Input Examination ID"
-         (keyup)="findExamById($event)" value="">
+  <input #inputtest type="text" placeholder="Paste Examination ID"
+         (keyup)="findExamById($event)" value="" min="20" max="20">
 </div>
 <div *ngIf="key" class="column row card">
   <h2>The exam will contain: </h2>
