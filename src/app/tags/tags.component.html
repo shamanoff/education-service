@@ -1,3 +1,15 @@
-<p>
-  tags works!
-</p>
+<div class="card">
+  <div class="row">
+    <h2 class="small-8 columns">All Disciplines</h2>
+    <input class="button float-right small-4 columns" type="button"  value="Add New Discipline">
+  </div>
+
+  <div *ngFor="let d of discipline$ | async" class="row">
+    <br>
+    <div class="small-10 columns">{{d.name}}</div>
+    <div class="small-1 columns"><i style="cursor:pointer" class="fi-pencil"></i></div>
+    <div class="small-1 columns" [ngStyle]="{'color': 'tomato'}" ><i style="cursor:pointer" class="fi-x"></i></div>
+    <br>
+    <hr>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+import {Tag} from "./tag";
 
 @Component({
   selector: 'app-tags',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements OnInit {
-
-  constructor() { }
+public discipline$: FirebaseListObservable<Tag[]>;
+  constructor(private _db: AngularFireDatabase) {
+    this.discipline$ = this._db.list('/tags');
+  }
 
   ngOnInit() {
   }
