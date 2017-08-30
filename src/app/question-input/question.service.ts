@@ -82,7 +82,7 @@ export class QuestionService {
 
 
   getQuestions(tag: string = null) {
-    console.log('getQuestions');
+    // console.log('getQuestions');
 
     if (tag != null) {
       this.question$ = this._db.list('/questions', {
@@ -95,7 +95,7 @@ export class QuestionService {
       this.question$ = this._db.list('/questions') as
         FirebaseListObservable<Question[]>;
     }
-    this.question$.subscribe(quest => console.log(quest));
+    // this.question$.subscribe(quest => console.log(quest));
     return this.question$;
   }
 
