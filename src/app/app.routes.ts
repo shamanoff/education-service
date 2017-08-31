@@ -17,7 +17,8 @@ export const router: Routes = [
   {path: 'test', component: TestComponent},
   {path: 'test/:key', component: TestComponent},
   {path: 'result', component: ResultComponent},
-  {path: 'result/:key', component: ResultComponent}
+  {path: 'result/:key', component: ResultComponent},
+  {path: '**', redirectTo:'/home'}
 
 
 ];
