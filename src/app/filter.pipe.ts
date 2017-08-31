@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {isUndefined} from 'util';
 
 @Pipe({
   name: 'filter'
@@ -6,7 +7,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, filterString: string, propName: string): any {
-    if (value.length === 0 || filterString === '') {
+    if (isUndefined === value || filterString === '') {
       return value;
     }
     const resultArray = [];

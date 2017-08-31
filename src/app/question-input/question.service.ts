@@ -92,7 +92,7 @@ export class QuestionService {
         }
       });
     } else {
-      this.question$ = this._db.list('/questions') as
+      this.question$ = this._db.list('/questions').map((array) => array.reverse()) as
         FirebaseListObservable<Question[]>;
     }
     // this.question$.subscribe(quest => console.log(quest));

@@ -12,7 +12,7 @@
 
   <br>
   <br>
-<div *ngFor="let q of (question$ | async) | reverse | filter:filteredStatus:'tag' " >
+<div *ngFor="let q of question$ | async  | filter:filteredStatus:'tag' " >
   <h4 *ngIf="q.tag" class="primary label">Descipline: {{q.tag}}</h4>
   <br>
   <h6 >Question: </h6>
